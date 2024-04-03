@@ -1,10 +1,7 @@
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
-import { dbConnection } from "./database/dbConnection.js";
 
 const app = express();
-dotenv.config({path: "./config/config.env"});
 
 app.use(
     cors(
@@ -17,7 +14,10 @@ app.use(
 );
 
 app.use(express.json()); //the string we are inputting is going to get converteed into json object
-app.use(express.urlencoded({extended : true}));
-dbConnection();
+app.use(express.urlencoded({ extended: true }));
+
+app.get("/", (req, res) => {
+    res.send("Hello World");
+});
 
 export default app;
